@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSRemapper.ViGEm", "DSRemapper.ViGEm.csproj", "{2DD71026-8F0D-4100-8DE7-B596A2BFB665}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD71026-8F0D-4100-8DE7-B596A2BFB665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD71026-8F0D-4100-8DE7-B596A2BFB665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD71026-8F0D-4100-8DE7-B596A2BFB665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD71026-8F0D-4100-8DE7-B596A2BFB665}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0B2E189-0195-4E2F-83A2-3CF4C4B595EA}
+	EndGlobalSection
+EndGlobal

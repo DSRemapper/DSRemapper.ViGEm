@@ -17,7 +17,7 @@ namespace DSRemapper.ViGEm
         public bool IsConnected { get; private set; }
         /// <inheritdoc/>
         public IDSRInputReport State { get; set; } = new DefaultDSRInputReport(6,0,14,1,0);
-        private readonly DefaultDSROutputReport feedback = new();
+        private readonly IDSROutputReport feedback = new DefaultDSROutputReport();
         /// <summary>
         /// ViGEm Xbox controller class constructor
         /// </summary>
@@ -73,7 +73,7 @@ namespace DSRemapper.ViGEm
             }
         }
         /// <inheritdoc/>
-        public DefaultDSROutputReport GetFeedbackReport()
+        public IDSROutputReport GetFeedbackReport()
         {
             return feedback;
         }

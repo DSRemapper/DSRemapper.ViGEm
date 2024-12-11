@@ -25,8 +25,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DSRemapper.Core" Version="0.2.6-beta" />
+    <PackageReference Include="DSRemapper.Core" Version="0.3.0-beta" />
     <PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.256" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DSRemapper.DualShockStructs\DSRemapper.DualShockStructs.csproj" />
   </ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

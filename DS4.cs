@@ -1,5 +1,6 @@
 ﻿using DSRemapper.Core;
 using DSRemapper.DualShock;
+using DSRemapper.DualCommon;
 using DSRemapper.Types;
 using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;

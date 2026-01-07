@@ -1,0 +1,3 @@
+[submodule "DualShockStructs"]
+	path = DualShockStructs
+	url = https://github.com/DSRemapper/DSRemapper.DualShockStructs

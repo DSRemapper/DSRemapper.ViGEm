@@ -2,39 +2,37 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-	  <OutputPath>..\Plugins\ViGEm\$(Configuration)</OutputPath>
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <Title>$(AssemblyName) - DSR-Plugin</Title>
-	  <Authors>Oscar-Wohlfarhrt</Authors>
-	  <Description>Plugin of DSRemapper</Description>
-	  <Copyright>Copyright (c) 2023 Oscar Andrés Wohlfarhrt</Copyright>
-	  <RepositoryType>git</RepositoryType>
-	  <PackageProjectUrl>https://github.com/Oscar-Wohlfarhrt/DSRemapper</PackageProjectUrl>
-	  <RepositoryUrl>https://github.com/Oscar-Wohlfarhrt/DSRemapper</RepositoryUrl>
-	  <AssemblyVersion>0.2.1</AssemblyVersion>
-	  <FileVersion>$(AssemblyVersion)</FileVersion>
-	  <Version>$(AssemblyVersion)-beta</Version>
-	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
-	  <Platforms>AnyCPU;x64</Platforms>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	<OutputPath>..\Plugins\ViGEm\$(Configuration)</OutputPath>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<Title>$(AssemblyName) - DSR-Plugin</Title>
+	<Authors>Oscar-Wohlfarhrt</Authors>
+	<Description>Plugin of DSRemapper</Description>
+	<Copyright>Copyright (c) 2023 Oscar Andrés Wohlfarhrt</Copyright>
+	<RepositoryType>git</RepositoryType>
+	<PackageProjectUrl>https://github.com/Oscar-Wohlfarhrt/DSRemapper</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/Oscar-Wohlfarhrt/DSRemapper</RepositoryUrl>
+	<AssemblyVersion>0.2.2</AssemblyVersion>
+	<FileVersion>$(AssemblyVersion)</FileVersion>
+	<Version>$(AssemblyVersion)</Version>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<Platforms>AnyCPU;x64</Platforms>
+	<DefaultItemExcludes>$(DefaultItemExcludes);DualShockStructs\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DSRemapper.Core" Version="0.4.4-beta" />
+    <PackageReference Include="DSRemapper.Core" Version="0.5.0" ExcludeAssets="runtime" PrivateAssets="All" />
     <PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.256" />
+    <ProjectReference Include=".\DualShockStructs\DSRemapper.DualShockStructs.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DSRemapper.DualShockStructs\DSRemapper.DualShockStructs.csproj" />
-  </ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="..\DSRPackager -w -p $(OutputPath) -o &quot;..\ZipPlugins\$(ProjectName) v$(Version).dsrp&quot;" />
-	</Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="..\DSRPackager -w -n &quot;$(ProjectName)&quot; -p $(OutputPath)\$(ProjectName).dll -o &quot;..\ZipPlugins\$(ProjectName) v$(Version).dsrp&quot;" Condition="'$(IS_CI_BUILD)' != 'true'"/>
+  </Target>
 
 </Project>

@@ -50,7 +50,6 @@ namespace DSRemapper.ViGEm
         public void Dispose()
         {
             Disconnect();
-            GC.SuppressFinalize(this);
         }
         private void EmuController_FeedbackReceived(object sender, Xbox360FeedbackReceivedEventArgs e)
         {

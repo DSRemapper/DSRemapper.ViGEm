@@ -4,11 +4,7 @@ using DSRemapper.DualCommon;
 using DSRemapper.Types;
 using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;
-using Nefarius.ViGEm.Client.Targets.DualShock4;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Text;
 
 namespace DSRemapper.ViGEm
 {
@@ -18,33 +14,29 @@ namespace DSRemapper.ViGEm
     [EmulatedController("ViGEm/DS4")]
     public class DS4 : IDSROutputController
     {
-        private static readonly DSRLogger logger = DSRLogger.GetLogger("DSRemapper.ViGEm/DS4");
-
         private readonly IDualShock4Controller emuController;
         private USBStatus rawStatus = new()
         {
             ReportId = 0,
             Basic = new(),
             Extended = new(),
-            Touches = [new(), new()],
+            Touches = [new(), new(), new()],
         };
 
         /// <inheritdoc/>
         public bool IsConnected { get; private set; }
         /// <inheritdoc/>
-        public IDSRInputReport State { get; set; } = new DualShockInputReport();
-        //public IDSRInputReport State { get; private set; } = new DefaultDSRInputReport(6, 0, 14, 1);
+        public IDSRInputReport State { get; set; }
         private DualShockOutputReport feedback = new (new USBOutReport());
         /// <summary>
         /// ViGEm DualShock 4 controller class constructor
         /// </summary>
         public DS4()
         {
+            State = new DualShockInputReport(rawStatus);
+
             ViGEmClient cli = new();
             emuController = cli.CreateDualShock4Controller(0x054C, 0x09CC);
-            /*#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
-                        emuController.FeedbackReceived += EmuController_FeedbackReceived; //there is no other way to get it work
-            #pragma warning restore CS0618 // El tipo o el miembro están obsoletos*/
             emuController.AutoSubmitReport = false;
         }
         /// <inheritdoc/>
@@ -69,7 +61,6 @@ namespace DSRemapper.ViGEm
         public void Dispose()
         {
             Disconnect();
-            GC.SuppressFinalize(this);
         }
         /*private void EmuController_FeedbackReceived(object sender, DualShock4FeedbackReceivedEventArgs e)
         {
